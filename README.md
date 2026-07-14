@@ -1,238 +1,305 @@
-# Matriculas
-Sistema de Matrículas - Jardín San Francisco de Paula
+# Enrollments
 
-Sistema web desarrollado para gestionar la información de matrículas escolares, alumnos, responsables/tutores y vínculos familiares.
-La aplicación permite cargar, consultar, modificar y eliminar información desde una interfaz sencilla, pensada para facilitar la búsqueda rápida de datos administrativos.
+## Enrollment Management System — San Francisco de Paula Kindergarten
 
-1. Descripción general
+Web-based system developed to manage school enrollment records, students, parents or guardians, and family relationships.
 
-El sistema permite administrar:
+The application allows users to create, view, update, and delete information through a simple interface designed to make administrative data easy to find.
 
-Alumnos.
-Responsables, padres, madres o tutores.
-Matrículas escolares.
-Vínculos entre alumnos y responsables.
-Búsqueda rápida por nombre, apellido, DNI, teléfono, sección o estado.
+## 1. General Description
 
-La aplicación cuenta con un backend desarrollado en Spring Boot, una base de datos MySQL y un frontend desarrollado en React.
-En la versión final integrada, el frontend se encuentra compilado dentro del backend, por lo que el sistema se ejecuta desde un único archivo .jar.
+The system allows users to manage:
 
-2. Funcionalidades principales
-Alumnos
+* Students.
+* Parents, guardians, or other responsible adults.
+* School enrollments.
+* Relationships between students and guardians.
+* Quick searches by first name, last name, DNI, phone number, class section, or status.
 
-Permite:
+The application has a backend developed with Spring Boot, a MySQL database, and a frontend developed with React.
 
-Crear alumnos.
-Editar datos de alumnos existentes.
-Eliminar alumnos.
-Buscar alumnos por nombre, apellido, DNI, nacionalidad o dirección.
-Visualizar estado activo/inactivo.
-Responsables
+In the final integrated version, the frontend is compiled and included within the backend. Therefore, the entire system runs from a single `.jar` file.
 
-Permite:
+## 2. Main Features
 
-Crear responsables.
-Editar responsables existentes.
-Eliminar responsables.
-Buscar por nombre, apellido, DNI, teléfono, ocupación o nacionalidad.
-Matrículas
+### Students
 
-Permite:
+The system allows users to:
 
-Crear matrículas asociadas a alumnos existentes.
-Editar datos de matrícula.
-Eliminar matrículas.
-Buscar por alumno, DNI, sección, ciclo lectivo o estado.
-Asociar una matrícula a un alumno previamente cargado.
+* Create student records.
+* Edit existing student information.
+* Delete students.
+* Search for students by first name, last name, DNI, nationality, or address.
+* View whether a student is active or inactive.
 
-Importante: el número de orden funciona como identificador de la matrícula. Por ese motivo, se carga al crear la matrícula, pero no se modifica durante la edición.
+### Guardians
 
-Vínculos alumno-responsable
+The system allows users to:
 
-Permite:
+* Create guardian records.
+* Edit existing guardian information.
+* Delete guardians.
+* Search by first name, last name, DNI, phone number, occupation, or nationality.
 
-Asociar un alumno con un responsable.
-Indicar el vínculo: madre, padre, tutor, abuelo/a u otro.
-Buscar vínculos por alumno, responsable, DNI, teléfono o sección.
-Desvincular responsables de un alumno.
+### Enrollments
 
-Esta sección está pensada para facilitar consultas rápidas, por ejemplo:
+The system allows users to:
 
-Buscar un alumno y ver sus responsables asociados.
-Buscar un responsable y ver con qué alumno está vinculado.
-Buscar por teléfono o DNI.
-3. Tecnologías utilizadas
-Backend
-Java 21
-Spring Boot
-Spring Security
-JWT
-Spring Data JPA
-Hibernate
-Maven
-Frontend
-React
-Vite
-JavaScript
-CSS
-Base de datos
-MySQL
-4. Requisitos para ejecutar el sistema
+* Create enrollments associated with existing students.
+* Edit enrollment information.
+* Delete enrollments.
+* Search by student, DNI, class section, academic year, or status.
+* Associate an enrollment with a previously registered student.
 
-Para ejecutar la versión final del sistema en una computadora, se necesita:
+**Important:** The order number works as the enrollment identifier. For this reason, it is entered when the enrollment is created, but it cannot be modified during editing.
 
-Java 21 instalado.
-MySQL instalado y en ejecución.
-Base de datos jardin creada.
-Archivo .jar generado del sistema.
-Archivo .bat de inicio, si se desea abrir desde un acceso directo.
+### Student–Guardian Relationships
 
-No es necesario tener instalado Node.js, npm, Vite ni Visual Studio Code para usar la versión final compilada.
+The system allows users to:
 
-5. Configuración de base de datos
+* Associate a student with a guardian.
+* Specify the relationship: mother, father, guardian, grandparent, or other.
+* Search for relationships by student, guardian, DNI, phone number, or class section.
+* Remove the relationship between a guardian and a student.
 
-El sistema utiliza una base de datos MySQL llamada:
+This section is designed to make quick searches easier, for example:
 
+* Search for a student and view their associated guardians.
+* Search for a guardian and view which student they are associated with.
+* Search by phone number or DNI.
+
+## 3. Technologies Used
+
+### Backend
+
+* Java 21
+* Spring Boot
+* Spring Security
+* JWT
+* Spring Data JPA
+* Hibernate
+* Maven
+
+### Frontend
+
+* React
+* Vite
+* JavaScript
+* CSS
+
+### Database
+
+* MySQL
+
+## 4. System Requirements
+
+To run the final version of the system on a computer, the following components are required:
+
+* Java 21 installed.
+* MySQL installed and running.
+* A database named `jardin`.
+* The generated system `.jar` file.
+* A startup `.bat` file, when launching the system from a desktop shortcut is desired.
+
+Node.js, npm, Vite, and Visual Studio Code are not required to use the final compiled version.
+
+## 5. Database Configuration
+
+The system uses a MySQL database named:
+
+```text
 jardin
+```
 
-Las credenciales de conexión se configuran en el archivo:
+The database connection credentials are configured in:
 
+```text
 src/main/resources/application.properties
+```
 
-Ejemplo de configuración:
+Example configuration:
 
+```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/jardin?useSSL=false&serverTimezone=America/Argentina/Buenos_Aires&allowPublicKeyRetrieval=true
 spring.datasource.username=root
-spring.datasource.password=TU_PASSWORD
+spring.datasource.password=YOUR_PASSWORD
 
 spring.jpa.hibernate.ddl-auto=none
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
+```
 
-También se configuran los datos de JWT:
+JWT settings are also configured in this file:
 
-jwt.secret=clave_super_secreta_para_matriculas_2026_segura
+```properties
+jwt.secret=super_secret_secure_key_for_enrollments_2026
 jwt.expiration=86400000
-6. Usuario administrador
+```
 
-El sistema utiliza login con JWT.
-Para ingresar se necesita tener un usuario cargado en la tabla usuarios.
+## 6. Administrator User
 
-Ejemplo:
+The system uses JWT-based authentication.
 
+To log in, a user must already exist in the `usuarios` table.
+
+Example:
+
+```sql
 INSERT INTO usuarios (username, password, rol, activo)
-VALUES ('admin', 'HASH_BCRYPT_DE_LA_PASSWORD', 'ADMIN', 1);
+VALUES ('admin', 'BCRYPT_PASSWORD_HASH', 'ADMIN', 1);
+```
 
-La contraseña no debe guardarse en texto plano. Debe estar en formato BCrypt.
+The password must not be stored as plain text. It must be stored using the BCrypt format.
 
-Ejemplo de credenciales de prueba:
+Example test credentials:
 
-Usuario: admin
-Contraseña: admin123
-7. Ejecución en modo desarrollo
+```text
+Username: admin
+Password: admin123
+```
 
-Para trabajar en desarrollo se pueden levantar backend y frontend por separado.
+## 7. Running the System in Development Mode
 
-Backend
+During development, the backend and frontend can be started separately.
 
-Desde la carpeta raíz del proyecto:
+### Backend
 
+From the project root directory:
+
+```bat
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas
 mvn.cmd spring-boot:run
+```
 
-El backend queda disponible en:
+The backend will be available at:
 
+```text
 http://localhost:8080
-Frontend
+```
 
-Desde la carpeta del frontend:
+### Frontend
 
+From the frontend directory:
+
+```bat
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas\src\main\java\ar\edu\sanfrancisco\matriculas\Code\frontend\Cliente
 npm.cmd run dev
+```
 
-El frontend queda disponible en:
+The frontend will be available at:
 
+```text
 http://localhost:5173
-8. Compilar el frontend para integrarlo en Spring Boot
+```
 
-Antes de generar el .jar, el frontend debe compilarse.
+## 8. Building the Frontend for Spring Boot Integration
 
-Desde la carpeta del frontend:
+Before generating the `.jar` file, the frontend must be built.
 
+From the frontend directory:
+
+```bat
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas\src\main\java\ar\edu\sanfrancisco\matriculas\Code\frontend\Cliente
 npm.cmd run build
+```
 
-Esto genera una carpeta:
+This generates a directory named:
 
+```text
 dist
+```
 
-Luego se debe copiar el contenido de dist dentro de:
+The contents of `dist` must then be copied into:
 
+```text
 src/main/resources/static
+```
 
-Ejemplo:
+Example:
 
+```powershell
 Copy-Item -Recurse -Force .\dist\* C:\Users\jerem\Documents\SanFraciscoJardin\matriculas\src\main\resources\static\
+```
 
-Debe quedar así:
+The final structure must look like this:
 
+```text
 src/main/resources/static/index.html
 src/main/resources/static/assets/
+```
 
-No debe quedar dentro de una carpeta dist.
+The files must not remain inside a `dist` directory.
 
-9. Generar el archivo .jar
+## 9. Generating the `.jar` File
 
-Desde la carpeta raíz del backend:
+From the backend root directory:
 
+```bat
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas
 mvn.cmd clean package
+```
 
-El archivo generado queda en:
+The generated file will be located at:
 
+```text
 target/matriculas-0.0.1-SNAPSHOT.jar
-10. Ejecutar la versión final
+```
 
-Para ejecutar el sistema integrado:
+## 10. Running the Final Version
 
+To run the integrated system:
+
+```bat
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas
 java -jar target\matriculas-0.0.1-SNAPSHOT.jar
+```
 
-Luego abrir en el navegador:
+Then open the following address in a web browser:
 
+```text
 http://localhost:8080
-11. Archivo .bat para abrir el sistema
+```
 
-Se puede crear un archivo llamado:
+## 11. `.bat` File for Starting the System
 
+A file named the following can be created:
+
+```text
 abrir-matriculas.bat
+```
 
-Por ejemplo, en:
+For example, it can be placed in:
 
+```text
 C:\Users\jerem\Documents\SanFraciscoJardin
+```
 
-Contenido sugerido:
+Suggested contents:
 
+```bat
 @echo off
-title Sistema de Matriculas
+title Enrollment Management System
 
 set JAVA_HOME=C:\Program Files\Java\jdk-21
 set PATH=%JAVA_HOME%\bin;%PATH%
 
 cd /d C:\Users\jerem\Documents\SanFraciscoJardin\matriculas
 
-echo Iniciando Sistema de Matriculas...
-start "Sistema Matriculas" cmd /k "java -jar target\matriculas-0.0.1-SNAPSHOT.jar"
+echo Starting Enrollment Management System...
+start "Enrollment System" cmd /k "java -jar target\matriculas-0.0.1-SNAPSHOT.jar"
 
 timeout /t 10 /nobreak > nul
 
 start http://localhost:8080
 
 exit
+```
 
-Luego se puede crear un acceso directo al archivo .bat en el escritorio.
+A desktop shortcut to the `.bat` file can then be created.
 
-12. Estructura general del proyecto
+## 12. General Project Structure
+
+```text
 matriculas
 ├── src
 │   ├── main
@@ -258,72 +325,104 @@ matriculas
 ├── target
 ├── pom.xml
 └── README.md
-13. Endpoints principales
-Autenticación
+```
+
+## 13. Main Endpoints
+
+### Authentication
+
+```http
 POST /api/auth/login
-Alumnos
+```
+
+### Students
+
+```http
 GET    /api/alumnos
 POST   /api/alumnos
 GET    /api/alumnos/{id}
 PUT    /api/alumnos/{id}
 DELETE /api/alumnos/{id}
-Responsables
+```
+
+### Guardians
+
+```http
 GET    /api/responsables
 POST   /api/responsables
 GET    /api/responsables/{id}
 PUT    /api/responsables/{id}
 DELETE /api/responsables/{id}
-Matrículas
+```
+
+### Enrollments
+
+```http
 GET    /api/matriculas
 POST   /api/matriculas
 GET    /api/matriculas/{nroOrden}
 PUT    /api/matriculas/{nroOrden}
 DELETE /api/matriculas/{nroOrden}
-Vínculos alumno-responsable
+```
+
+### Student–Guardian Relationships
+
+```http
 GET    /api/alumno-responsable/buscar
 POST   /api/alumno-responsable
 GET    /api/alumno-responsable/alumno/{idAlumno}
 DELETE /api/alumno-responsable/{idAlumnoResponsable}
-14. Consideraciones importantes
-El sistema está pensado para uso local en una computadora o red interna.
-MySQL debe estar iniciado antes de ejecutar la aplicación.
-El usuario administrador debe existir previamente en la base de datos.
-Si se modifica el frontend, se debe volver a ejecutar npm run build, copiar el contenido de dist a static y regenerar el .jar.
-El número de orden de matrícula funciona como clave primaria y no debe modificarse al editar una matrícula.
-Para evitar errores, no se recomienda eliminar alumnos o responsables que tengan relaciones activas sin antes revisar sus vínculos o matrículas asociadas.
-15. Flujo de uso recomendado
-Iniciar el sistema desde el acceso directo o ejecutando el .jar.
-Ingresar con usuario y contraseña.
-Cargar alumnos.
-Cargar responsables.
-Crear vínculos entre alumnos y responsables.
-Crear matrículas asociadas a alumnos.
-Utilizar las barras de búsqueda para localizar rápidamente la información.
-16. Mantenimiento
+```
 
-Cuando se realicen cambios en el frontend:
+## 14. Important Considerations
 
+* The system is intended for local use on a computer or internal network.
+* MySQL must be running before the application is started.
+* The administrator user must already exist in the database.
+* When the frontend is modified, `npm run build` must be executed again, the contents of `dist` must be copied into `static`, and the `.jar` file must be regenerated.
+* The enrollment order number works as the primary key and must not be modified when editing an enrollment.
+* To prevent errors, it is not recommended to delete students or guardians who have active relationships without first reviewing their associated relationships or enrollments.
+
+## 15. Recommended Usage Workflow
+
+1. Start the system from the desktop shortcut or by running the `.jar` file.
+2. Log in with a username and password.
+3. Create the student records.
+4. Create the guardian records.
+5. Create relationships between students and guardians.
+6. Create enrollments associated with students.
+7. Use the search bars to quickly locate information.
+
+## 16. Maintenance
+
+When changes are made to the frontend:
+
+```powershell
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas\src\main\java\ar\edu\sanfrancisco\matriculas\Code\frontend\Cliente
 npm.cmd run build
 Copy-Item -Recurse -Force .\dist\* C:\Users\jerem\Documents\SanFraciscoJardin\matriculas\src\main\resources\static\
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas
 mvn.cmd clean package
+```
 
-Cuando se realicen cambios solo en backend:
+When changes are made only to the backend:
 
+```bat
 cd C:\Users\jerem\Documents\SanFraciscoJardin\matriculas
 mvn.cmd clean package
-17. Estado del proyecto
+```
 
-El sistema cuenta con:
+## 17. Project Status
 
-Login con JWT.
-Backend protegido.
-Frontend integrado en Spring Boot.
-Gestión de alumnos.
-Gestión de responsables.
-Gestión de matrículas.
-Gestión de vínculos.
-Buscadores en las secciones principales.
-Ejecución mediante archivo .jar.
+The system currently includes:
+
+* JWT-based login.
+* Protected backend.
+* Frontend integrated into Spring Boot.
+* Student management.
+* Guardian management.
+* Enrollment management.
+* Student–guardian relationship management.
+* Search functionality in the main sections.
+* Execution through a `.jar` file.
 
