@@ -37,7 +37,11 @@ The application expects a MySQL database named `jardin`. Database credentials ar
 Example configuration:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/jardin?useSSL=false&serverTimezone=America/Argentina/Buenos_Aires&allowPublicKeyRetrieval=true
+spring.datasource.url=jdbc:mysql://localhost:3306/jardin?\
+useSSL=false&\
+serverTimezone=America/Argentina/Buenos_Aires&\
+allowPublicKeyRetrieval=true
+
 spring.datasource.username=root
 spring.datasource.password=YOUR_PASSWORD
 
